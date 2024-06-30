@@ -4,26 +4,20 @@ import './App.css'
 
 function AboutMeForm({ updateFunction, infoObject }) {
 
-  const [tempObject, setTempObject] = useState({...infoObject})
-
   function handleName(name) {
-    const tempObject = {...infoObject, name:name }
-    updateFunction(tempObject)
+    updateFunction({...infoObject, name:name})
   }
 
   function handleRole(role) {
-    const tempObject = {...infoObject, role:role }
-    updateFunction(tempObject)
+    updateFunction({...infoObject, role:role })
   }
 
   function handlePNum(pNum) {
-    const tempObject = {...infoObject, pNum:pNum }
-    updateFunction(tempObject)
+    updateFunction({...infoObject, pNum:pNum })
   }
 
   function handleEmail(email) {
-    const tempObject = {...infoObject, email:email }
-    updateFunction(tempObject)
+    updateFunction({...infoObject, email:email })
   }
 
   function handleSubmit(e) {
@@ -42,46 +36,66 @@ function AboutMeForm({ updateFunction, infoObject }) {
   return (
     <form className="form-content" onSubmit={handleSubmit}>
       <label htmlFor="name">Full Name:</label>
-      <input type="text" id="name" onChange={(e) => handleName(e.target.value)} value={infoObject.name} />
+      <input type="text" id="name" onChange={(e) => handleName(e.target.value)} value={infoObject.name} required />
       <label htmlFor="name">Role:</label>
-      <input type="text" id="role" onChange={(e) => handleRole(e.target.value)} value={infoObject.role} />
+      <input type="text" id="role" onChange={(e) => handleRole(e.target.value)} value={infoObject.role} required />
       <label htmlFor="pNum">Phone Number:</label>
-      <input type="tel" id="pNum" onChange={(e) => handlePNum(e.target.value)} value={infoObject.pNum} />
+      <input type="tel" id="pNum" onChange={(e) => handlePNum(e.target.value)} value={infoObject.pNum} required />
       <label htmlFor="email">Email:</label>
-      <input type="email" id="email" onChange={(e) => handleEmail(e.target.value)} value={infoObject.email} />
+      <input type="email" id="email" onChange={(e) => handleEmail(e.target.value)} value={infoObject.email} required />
       <button>Update</button>
     </form>
   )
 }
 
-function ExperienceForm({ updateFunction }) {
+function ExperienceForm({ updateFunction, infoObject }) {
 
-  const [name, setName] = useState("")
-  const [pNum, setPNum] = useState("")
-  const [email, setEmail] = useState("")
+  function handleCompanyName(companyName) {
+    updateFunction({...infoObject, companyName: companyName})
+  }
+
+  function handleRole(role) {
+    updateFunction({...infoObject, role: role})
+  }
+
+  function handleStartDate(startDate) {
+    updateFunction({...infoObject, startDate: startDate})
+  }
+
+  function handleEndDate(endDate) {
+    updateFunction({...infoObject, endDate: endDate})
+  }
+
+  function handleJobDescription(jobDescription) {
+    updateFunction({...infoObject, jobDescription: jobDescription})
+  }
 
   function handleSubmit(e) {
     
     e.preventDefault()
 
-    const tempObject = {
-      name: name, pNum: pNum, email: email
+    if (infoObject.companyName && infoObject.role && infoObject.startDate && infoObject.endDate && infoObject.jobDescription) {
+      infoObject.filled = true
+    } else {
+      infoObject.filled = false;
     }
 
-    updateFunction(tempObject)
+    updateFunction(infoObject)
   }
 
 
   return (
-    <form className="form-content">
+    <form className="form-content" onSubmit={handleSubmit}>
       <label htmlFor="companyName">Company Name:</label>
-      <input type="text" id="companyName" />
+      <input type="text" id="companyName" onChange={(e)=>handleCompanyName(e.target.value)} value={infoObject.companyName} required />
+      <label htmlFor="role">Role:</label>
+      <input type="text" id="role"onChange={(e)=>handleRole(e.target.value)} value={infoObject.rolee} required />
       <label htmlFor="startDate">Start Date:</label>
-      <input type="date" id="startDate" />
+      <input type="date" id="startDate" onChange={(e)=>handleStartDate(e.target.value)} value={infoObject.startDate} required />
       <label htmlFor="endDate">End Date:</label>
-      <input type="date" id="endDate" />
+      <input type="date" id="endDate" onChange={(e)=>handleEndDate(e.target.value)} value={infoObject.endDate} required />
       <label htmlFor="jobDescription">Job Description:</label>
-      <textarea name="jobDescription" id="jobDescription"></textarea>
+      <textarea name="jobDescription" id="jobDescription"onChange={(e)=>handleJobDescription(e.target.value)} value={infoObject.jobDescription} required />
       <button>Update</button>
     </form>
   )
@@ -90,13 +104,13 @@ function ExperienceForm({ updateFunction }) {
 function EducationForm({ updateFunction }) {
   return (
     <form className="form-content">
-      <label htmlFor="schoolName"></label>
+      <label htmlFor="schoolName">School Name:</label>
       <input type="text" id="schoolName" />
-      <label htmlFor="startDate"></label>
+      <label htmlFor="startDate">Start Date:</label>
       <input type="date" id="startDate" />
-      <label htmlFor="endDate"></label>
+      <label htmlFor="endDate">End Date:</label>
       <input type="date" id="endDate" />
-      <label htmlFor="achievments"></label>
+      <label htmlFor="achievments">Achievments:</label>
       <textarea name="jobDescription" id="achievments"></textarea>
       <button>Update</button>
     </form>
@@ -135,7 +149,7 @@ function ExpandableForm({ childFormId, title, updateFunction, infoObject }) {
 function App() {
 
   const [aboutMe, setAboutMe] = useState({ name: "", role: "", pNum: "", email: "", filled:false })
-  const [experience, setExperience] = useState({ companyName: "", startDate: "", endDate: "", jobDescription: "" })
+  const [experience, setExperience] = useState({ companyName: "", role: "", startDate: "", endDate: "", jobDescription: "", filed: false })
   const [education, setEducation] = useState({})
 
   return (
@@ -149,15 +163,15 @@ function App() {
 
       <div className="resume-page">
         <div className="about-me-section">
-          {
-            aboutMe.filled && (<h1>{aboutMe.name}, {aboutMe.role}</h1>)
-            }
-         
-          {
-          aboutMe.filled && (<h3>{aboutMe.pNum}, {aboutMe.email}</h3>)
-          }
+          {aboutMe.filled && (<h1>{aboutMe.name}, {aboutMe.role}</h1>)}
+          {aboutMe.filled && (<h3 className="contact-details">{aboutMe.pNum}, {aboutMe.email}</h3>)}
         </div>
-        <div className="experience-section">{ }</div>
+        <div className="experience-section">
+          <h3>EMPLOYMENT HISTORY</h3>
+          {/* This section maps through the experiences submitted, then returns a section for each experience */}
+          <h3>{experience.role}, {experience.companyName}</h3>
+          <h3>{experience.startDate} - {experience.endDate}</h3>
+        </div>
         <div className="education-section">{ }</div>
       </div>
     </>

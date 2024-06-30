@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text:wght@400..700&display=swap');
+
+
 #root {
+  font-family: "Markazi", serif;
+  font-weight: 400;
   max-width: 100vw;
   min-height: 100vh;
   margin: 0 auto;
@@ -25,6 +30,9 @@
   color: black;
   padding: 15px;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 label {
@@ -107,10 +115,27 @@ form button {
   flex-direction: column;
 }
 
+button {
+  color: white;
+}
+
 .resume-page h3 {
   font-size: 0.9rem;
-  font-family: serif;
+  font-family: "Markazi";
+  font-weight: 8=600;
   margin: 0;
   padding: 0;
+}
+
+.contact-details {
+  font-weight: lighter;
+}
+
+.experience-section {
+  width: 80%;
+  height: 2px;
+  border-top: 1px solid black;
+  padding-top: 15px;
+  text-align: left;
 }
 
