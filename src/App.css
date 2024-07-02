@@ -14,29 +14,22 @@
   padding: 50px;
 }
 
-.forms {
-  width: 400px;
-}
 
-.form-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.resume-page {
-  background: rgb(255, 255, 255);
-  width: 600px;
-  aspect-ratio: 1.41/1;
-  color: black;
-  padding: 15px;
+h1, h3 {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
+
+
+.forms {
+  width: 600px;
+}
+
+
 
 label {
   font-weight: bolder;
+  width: 100%;
+  text-align: left;
 }
 
 button:hover {
@@ -51,10 +44,20 @@ h1 {
 .expandable-form {
   background:white;
   color: black;
-  padding: 10px;
+  padding: 15px;
   border-radius: 15px;
   margin-bottom: 25px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
 }
 
 input {
@@ -62,10 +65,12 @@ input {
   background: rgb(239, 234, 234);
   font-size: 1rem;
   margin-bottom: 10px;
-  border: 1px solid rgb(236, 227, 227);
   border-radius: 5px;
-  padding: 5px;
-  width: 95%;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: 0;
+  border: 0;
 }
 
 input:focus {
@@ -77,6 +82,7 @@ input:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .form-header h1 {
@@ -110,9 +116,9 @@ form button {
 }
 
 .about-me-section {
-  height: 10%;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 }
 
 button {
@@ -123,7 +129,6 @@ button {
   font-size: 0.9rem;
   font-family: "Markazi";
   font-weight: 8=600;
-  margin: 0;
   padding: 0;
 }
 
@@ -131,11 +136,73 @@ button {
   font-weight: lighter;
 }
 
+.experience-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+
 .experience-section {
   width: 80%;
-  height: 2px;
+  height: 0;
   border-top: 1px solid black;
-  padding-top: 15px;
+  padding: 0;
+  margin: 0;
   text-align: left;
 }
+
+textarea {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 10px;
+
+}
+
+.experience-title {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.experience-header h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.date-range {
+  font-weight: 100;
+}
+
+ul {
+  padding-left: 25px;
+  margin: 0;
+}
+
+li {
+  font-size: .85rem;
+}
+
+.submit-btn {
+  width: 100%;
+}
+
+.education-section {
+
+}
+
+.resume-page {
+  background: rgb(255, 255, 255);
+  width: 600px;
+  height: 846px;
+  color: black;
+  padding: 15px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
