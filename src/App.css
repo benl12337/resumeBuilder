@@ -136,7 +136,7 @@ button {
   font-weight: lighter;
 }
 
-.experience-header {
+.section-header {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -145,12 +145,11 @@ button {
 }
 
 
-.experience-section {
-  width: 80%;
-  height: 0;
+.section-block {
+  width: 85%;
   border-top: 1px solid black;
   padding: 0;
-  margin: 0;
+  margin-top: 15px;
   text-align: left;
 }
 
@@ -159,17 +158,21 @@ textarea {
   padding: 0;
   width: 100%;
   margin-bottom: 10px;
+  background: rgb(239, 234, 234);
+  color: black;
+
 
 }
 
-.experience-title {
+.section-title {
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
-.experience-header h3 {
+.section-header h3 {
   margin: 0;
   padding: 0;
+  padding-left: 10px;
 }
 
 .date-range {
@@ -177,7 +180,7 @@ textarea {
 }
 
 ul {
-  padding-left: 25px;
+  padding-left: 20px;
   margin: 0;
 }
 

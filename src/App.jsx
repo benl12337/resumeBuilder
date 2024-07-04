@@ -26,7 +26,7 @@ function AboutMeForm({ updateFunction, infoObject }) {
 
     const tempObject = { ...infoObject }
 
-    if (infoObject.name && infoObject.role && infoObject.pNum && infoObject.email) {
+    if (infoObject.name && infoObject.pNum && infoObject.email) {
       tempObject.filled = true
     } else {
       tempObject.filled = false
@@ -39,7 +39,7 @@ function AboutMeForm({ updateFunction, infoObject }) {
       <label htmlFor="name">Full Name:</label>
       <input type="text" id="name" onChange={(e) => handleName(e.target.value)} value={infoObject.name} required />
       <label htmlFor="name">Role:</label>
-      <input type="text" id="role" onChange={(e) => handleRole(e.target.value)} value={infoObject.role} required />
+      <input type="text" id="role" onChange={(e) => handleRole(e.target.value)} value={infoObject.role} />
       <label htmlFor="pNum">Phone Number:</label>
       <input type="tel" id="pNum" onChange={(e) => handlePNum(e.target.value)} value={infoObject.pNum} required />
       <label htmlFor="email">Email:</label>
@@ -177,6 +177,7 @@ function App() {
   const [education, setEducation] = useState({ schoolName: "", startDate: "", endDate: "", achievements: "", filled: false })
 
   const experiencePoints = experience.jobDescription.split("\n")
+  const educationPoints = education.achievements.split("\n")
   console.log(experiencePoints)
 
   return (
@@ -189,12 +190,12 @@ function App() {
 
       <div className="resume-page">
         <div className="about-me-section">
-          {aboutMe.filled && (<h1>{aboutMe.name}, {aboutMe.role}</h1>)}
+          {aboutMe.filled && (<h1>{aboutMe.name}{aboutMe.role && ", "}{aboutMe.role}</h1>)}
           {aboutMe.filled && (<h3 className="contact-details">{aboutMe.pNum}, {aboutMe.email}</h3>)}
         </div>
-        {experience.filled && (<div className="experience-section">
-          <h3 className="experience-title">EMPLOYMENT HISTORY</h3>
-          <div className="experience-header">
+        {experience.filled && (<div className="experience-section section-block">
+          <h3 className="section-title">EMPLOYMENT HISTORY</h3>
+          <div className="section-header">
             {experience.filled && (<h3>{experience.role}{experience.role && ","} {experience.companyName}</h3>)}
             {experience.filled && (<h3 className="date-range">{format(new Date(experience.startDate), "MMM yyyy")} - {format(new Date(experience.endDate), "MMM yyyy")}</h3>)}
           </div>
@@ -205,11 +206,21 @@ function App() {
             )}
           </ul>
         </div>)}
-      
-            <div className="education-section">
-              
-            </div>
-          
+
+        <div className="education-section section-block">
+           <h3 className="section-title">EDUCATION</h3>
+           <div className="section-header">
+           {education.filled && (<h3>{education.schoolName}</h3>)}
+           {education.filled && (<h3 className="date-range">{format(new Date(education.startDate), "yyyy")} - {format(new Date(education.endDate), "yyyy")}</h3>)}
+           </div>
+           <ul>
+            {educationPoints.map((point)=>point&&<li key={point}>{point}</li>)
+            }
+          </ul>
+
+
+        </div>
+
       </div>
     </>
   )
