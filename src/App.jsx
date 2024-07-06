@@ -207,19 +207,19 @@ function App() {
           </ul>
         </div>)}
 
-        <div className="education-section section-block">
-           <h3 className="section-title">EDUCATION</h3>
-           <div className="section-header">
-           {education.filled && (<h3>{education.schoolName}</h3>)}
-           {education.filled && (<h3 className="date-range">{format(new Date(education.startDate), "yyyy")} - {format(new Date(education.endDate), "yyyy")}</h3>)}
-           </div>
-           <ul>
-            {educationPoints.map((point)=>point&&<li key={point}>{point}</li>)
-            }
-          </ul>
-
-
-        </div>
+        {education.filled && (
+          <div className="education-section section-block">
+            <h3 className="section-title">EDUCATION</h3>
+            <div className="section-header">
+              <h3>{education.schoolName}</h3>
+              <h3 className="date-range">{format(new Date(education.startDate), "yyyy")} - {format(new Date(education.endDate), "yyyy")}</h3>
+            </div>
+            <ul>
+              {educationPoints.map((point) => point && <li key={point}>{point}</li>)
+              }
+            </ul>
+          </div>
+        )}
 
       </div>
     </>
